@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nilai Mahasiswa</title>
+    
+</head>
+<body>
+	<h1>Daftar Nilai Mahasiswa</h1>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<table border="1">
+		<thead>
+			<tr>
+				<th>NIM</th>
+				<th>Nama</th>
+				<th>Kelas</th>
+				<th>Fundamental Cloud</th>
+				<th>Database</th>
+				<th>Python</th>
+				<th>Linux</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for mahasiswa in data %}
+			<tr>
+				<td>{{ mahasiswa[0] }}</td>
+				<td>{{ mahasiswa[1] }}</td>
+				<td>{{ mahasiswa[2] }}</td>
+				<td>{{ mahasiswa[3] }}</td>
+				<td>{{ mahasiswa[4] }}</td>
+				<td>{{ mahasiswa[5] }}</td>
+				<td>{{ mahasiswa[6] }}</td>
+				<td>
+					<a href="{{url_for('edit', nim=mahasiswa[0]) }}">Edit</a> |
+					<a href="{{url_for('delete', nim=mahasiswa[0]) }}">Delete</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<br>
+
+
+	<form action="{{ url_for('add') }}" method="POST">
+		<label>NIM:</label>
+		<input type="text" name="NIM"><br>
+
+		<label>Nama:</label>
+		<input type="text" name="Nama"><br>
+
+		<label>Kelas:</label>
+		<input type="text" name="Kelas"><br>
+
+		<label>Fundamental Cloud:</label>
+		<input type="text" name="Fundamental_Cloud"><br>
+
+		<label>Database:</label>
+		<input type="text" name="Db"><br>
+
+		<label>Python:</label>
+		<input type="text" name="Py"><br>
+
+		<label>Linux:</label>
+		<input type="text" name="Linux"><br>
+
+		<input type="submit" value="Tambah">
+	</form>
+</body>
+</html>
